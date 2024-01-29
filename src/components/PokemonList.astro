@@ -1,0 +1,62 @@
+---
+import axios from "axios";
+
+interface PokemonList {
+  name: string;
+  id: number;
+  image: string;
+}
+const fetchPokemon = async () => {
+  try {
+    const response = await axios.get<{ results: PokemonList[] }>(
+      "https://pokeapi.co/api/v2/pokemon?limit=50"
+    );
+    const pokemon = response.data?.results?.map(
+      (pokemon: { name: any }, index: number) => {
+        //This is server-side code, so it will not be included in the client bundle
+        console.log(JSON.stringify(pokemon, null, 2));
+        const { name } = pokemon;
+        const id = index + 1;
+        const image = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`;
+
+        return { name, id, image };
+      }
+    );
+
+    return pokemon;
+  } catch (error) {
+    console.error(`Failed to fetch Pokemon: ${error}`);
+  }
+};
+
+const pokemon = await fetchPokemon();
+---
+ 
+        <h1>Pokemon API</h1>
+        <ul>
+        {
+            pokemon?.slice(0,10).map((pokemon) => (
+            
+                <img src={pokemon.image} alt={pokemon.name} />
+                <h1>{pokemon.name}</h1>
+            
+            ))
+        }
+        </ul>
+
+<style>
+    {
+     margin: 0;
+     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+       Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+       "Segoe UI Symbol";
+   }
+  
+   h1 {
+     color: #06f;
+   }
+  
+   h2 {
+     color: #f60;
+   }
+  </style>
