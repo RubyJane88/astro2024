@@ -1,3 +1,41 @@
-<html>
-  <h1>Welcome to the home page</h1>
+---
+import Footer from "./Footer.astro";
+
+const navItems = [
+  { href: "/about", label: "About" },
+  { href: "/blog", label: "Blog" },
+  { href: "/contact", label: "Contact" },
+];
+
+const { title } = Astro.props;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <header class="bg-gray-800 text-white py-4">
+      <div class="container mx-auto px-4 flex justify-between items-center">
+        <a href="/" class="text-xl font-bold no-underline text-white"
+          >Astro Party!</a
+        >
+        <nav class="flex space-x-4">
+          {
+            navItems.map((item) => (
+              <a href={item.href} class="hover:text-gray-300">
+                {item.label}
+              </a>
+            ))
+          }
+        </nav>
+      </div>
+    </header>
+    <slot />
+
+  </body>
 </html>

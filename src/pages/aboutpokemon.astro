@@ -1,11 +1,4 @@
 ---
-import { Image } from "astro:assets"; // Import the 'pokemon6' image from the assets folder
-import pokemon6 from "../assets/pokemon6.jpeg";
-import pokemon1 from "../assets/pokemon1.png";
-import pokemon2 from "../assets/pokemon2.jpeg";
-import pokemon3 from "../assets/pokemon3.jpeg";
-import pokemon4 from "../assets/pokemon4.png";
-import pokemon5 from "../assets/pokemon5.webp";
 import MainLayout from "../components/MainLayout.astro";
 ---
 
@@ -15,18 +8,22 @@ import MainLayout from "../components/MainLayout.astro";
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>About Pokemon</title>
-
-    <link
-      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
-      rel="stylesheet"
-    />
   </head>
+
+  <link
+    href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+    rel="stylesheet"
+  />
+
   <body>
     <MainLayout>
       <div class="min-h-screen flex items-center justify-center bg-gray-100">
+        <!-- Centered container using flexbox -->
         <div
           class="bg-white p-6 rounded-lg shadow-md w-full md:w-2/3 lg:w-1/2 xl:w-1/3">
+          <!-- Card-like container with padding and shadow -->
           <h1 class="text-3xl font-semibold mb-6">About Pokemon</h1>
+          <p>Images from public folder are not touched or optimized by Astro</p>
 
           <div class="content">
             <p>
@@ -45,14 +42,44 @@ import MainLayout from "../components/MainLayout.astro";
               world for both the young and the young at heart.
             </p>
           </div>
-          <Image src={pokemon6} alt="Pokemon World" height={400} width={400} />
-          <Image src={pokemon1} alt="Pokemon World" height={400} width={400} />
-          <Image src={pokemon2} alt="Pokemon World" height={400} width={400} />
-          <Image src={pokemon3} alt="Pokemon World" height={400} width={400} />
-          <Image src={pokemon4} alt="Pokemon World" height={400} width={400} />
-          <Image src={pokemon5} alt="Pokemon World" height={400} width={400} />
+          <img
+            src="/pokemon6.jpeg"
+            alt="Pokemon World"
+            height={400}
+            width={400}
+          />
+          <img
+            src="/pokemon1.png"
+            alt="Pokemon World"
+            height={400}
+            width={400}
+          />
+          <img
+            src="/pokemon2.jpeg"
+            alt="Pokemon World"
+            height={400}
+            width={400}
+          />
+          <img
+            src="/pokemon3.jpeg"
+            alt="Pokemon World"
+            height={400}
+            width={400}
+          />
+          <img
+            src="/pokemon4.png"
+            alt="Pokemon World"
+            height={400}
+            width={400}
+          />
+          <img
+            src="/pokemon5.webp"
+            alt="Pokemon World"
+            height={400}
+            width={400}
+          />
         </div>
       </div>
-    </MainLayout>s
+    </MainLayout>
   </body>
 </html>

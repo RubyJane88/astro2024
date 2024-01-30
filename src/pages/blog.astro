@@ -1,7 +1,7 @@
 ---
 import MainLayout from "../components/MainLayout.astro";
-import PokemonList from "../components/PokemonList.astro";
-import Todo from "../components/Todo";
+import { Image } from "astro:assets";
+import pokemonlogo from "../assets/pokemonlogo.png";
 ---
 
 <MainLayout title="Astro World">
@@ -9,9 +9,13 @@ import Todo from "../components/Todo";
     class="flex flex-col justify-center items-center min-h-screen bg-gray-100">
     <div class="text-center">
       <h1 class="text-4xl font-bold mb-2">Welcome to Astro World</h1>
-      <p class="text-lg mb-4">Here you can find all the pokemons</p>
     </div>
-    <Todo client:load />
-    <PokemonList />
+    <Image
+      src={pokemonlogo}
+      alt="Pokemon Logo"
+      class="w-1/2"
+      height={600}
+      width={600}
+    />
   </div>
 </MainLayout>
