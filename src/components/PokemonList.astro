@@ -1,6 +1,5 @@
 ---
 import axios from "axios";
-import Card from "./Card.astro";
 
 interface PokemonList {
   name: string;
@@ -14,12 +13,9 @@ const fetchPokemon = async () => {
     );
     const pokemon = response.data?.results?.map(
       (pokemon: { name: any }, index: number) => {
-        //This is server-side code, so it will not be included in the client bundle
-        console.log(JSON.stringify(pokemon, null, 2));
         const { name } = pokemon;
         const id = index + 1;
         const image = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`;
-
         return { name, id, image };
       }
     );
@@ -32,14 +28,20 @@ const fetchPokemon = async () => {
 
 const pokemon = await fetchPokemon();
 ---
- 
+
 <div class="flex justify-center items-center min-h-screen bg-gray-100">
   <div class="grid grid-cols-2 md:grid-cols-4 gap-4 p-4">
-    {pokemon?.slice(0,20).map((pokemon) => (
-      <div class="bg-white shadow rounded-lg p-4">
-        <img src={pokemon.image} alt={pokemon.name} class="mx-auto"/>
-        <h2 class="text-center text-xl font-bold">{pokemon.name}</h2>
-      </div>
-    ))}
+    {
+      pokemon?.slice(0, 20).map((pokemon) => (
+        <div class="bg-white shadow rounded-lg p-4 transform transition-transform hover:scale-110 cursor-pointer">
+          <img
+            src={pokemon.image}
+            alt={pokemon.name}
+            class="mx-auto transition-transform transform hover:scale-300"
+          />
+          <h2 class="text-center text-xl font-bold">{pokemon.name}</h2>
+        </div>
+      ))
+    }
   </div>
 </div>
